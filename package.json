@@ -1,15 +1,17 @@
 {
-  "name": "gatsby-starter-plugin",
+  "name": "gatsby-source-contentchef",
   "version": "1.0.0",
-  "description": "A minimal boilerplate for the essential files Gatsby looks for in a plugin",
+  "description": "Source plugin for ContentChef Headless CMS",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
     "gatsby",
-    "gatsby-plugin"
+    "gatsby-plugin",
+    "gatsby-contentchef",
+    "contentchef"
   ],
-  "author": "Kyle Gill <kyle.robert.gill@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@contentchef/contentchef-node": "^2.1.0",
+    "gatsby-node-helpers": "^0.3.0"
+  }
 }
