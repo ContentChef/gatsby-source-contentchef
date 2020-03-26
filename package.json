@@ -1,7 +1,7 @@
 {
   "name": "gatsby-source-contentchef",
   "version": "1.0.0",
-  "description": "Source plugin for ContentChef Headless CMS",
+  "description": "Gatsby source plugin for ContentChef Headless CMS",
   "main": "index.js",
   "keywords": [
     "gatsby",
@@ -10,6 +10,24 @@
     "contentchef"
   ],
   "license": "MIT",
+  "author": {
+    "name": "ContentChef",
+    "email": "support@contentchef.io",
+    "url": "https://contentchef.io"
+  },
+  "maintainers": [{
+    "name": "ContentChef",
+    "email": "support@contentchef.io",
+    "url": "https://contentchef.io"
+  }],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ContentChef/gatsby-source-contentchef"
+  },
+  "bugs": {
+    "url": "https://github.com/ContentChef/gatsby-source-contentchef/issues"
+  },
+  "homepage": "https://contentchef.io",
   "dependencies": {
     "@contentchef/contentchef-node": "^2.1.0",
     "gatsby-node-helpers": "^0.3.0"
