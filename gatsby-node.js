@@ -1,4 +1,4 @@
-const fetchData = require('./fetch').fetchData;
+const fetchData = require('./src/fetch').fetchData;
 const createNodeHelpers = require('gatsby-node-helpers').default;
 
 const { createNodeFactory } = createNodeHelpers({
