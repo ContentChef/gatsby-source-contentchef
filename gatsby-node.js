@@ -5,11 +5,11 @@ const { createNodeFactory } = createNodeHelpers({
     typePrefix: 'ContentChef',
 });
 
-exports.sourceNodes = async ({ store, actions, cache, reporter, getNode, getNodes }, pluginOptions) => {
+exports.sourceNodes = async ({ actions, reporter, getNode, getNodes }, pluginOptions) => {
     const { createNode, deleteNode, touchNode } = actions;
     const { apiKey, spaceId, host, channel, queries, targetDate } = pluginOptions;
 
-    const activity = reporter.activityTimer('Fetched ContentChef Contents');
+    const activity = reporter.activityTimer('Fetch contents from ContentChef');
     activity.start();
 
     const promises = queries.map(query => fetchData({apiKey, spaceId, host, channel, query, targetDate, reporter}));

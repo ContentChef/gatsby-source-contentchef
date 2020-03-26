@@ -4,8 +4,6 @@ exports.fetchData = async ({apiKey, spaceId, host, channel, query, targetDate, r
 
     const { id, ...searchConfig } = query;
 
-    reporter.info(`Initializing ContentChef client for query ${id}: \napiKey: ${apiKey} \nspaceId: ${spaceId} \nhost: ${host} \ndate: ${targetDate} \nchannel: ${channel}`);
-
     client = ContentChef.configure({
         apiKey, spaceId, host
     }, targetDate);
