@@ -1,22 +1,23 @@
-const fetchData = require('./src/fetch').fetchData;
-const createNodeHelpers = require('gatsby-node-helpers').default;
+import { fetchData }  from './fetch';
+import createNodeHelpers from 'gatsby-node-helpers';
+import { IPaginatedResponse } from '@contentchef/contentchef-node';
 
 const { createNodeFactory } = createNodeHelpers({
     typePrefix: 'ContentChef',
 });
 
-exports.sourceNodes = async ({ actions, reporter, getNode, getNodes }, pluginOptions) => {
+export const sourceNodes = async ({ actions, reporter, getNode, getNodes }, pluginOptions) => {
     const { createNode, deleteNode, touchNode } = actions;
     const { apiKey, spaceId, host, channel, queries, targetDate } = pluginOptions;
 
     const activity = reporter.activityTimer('Fetch contents from ContentChef');
     activity.start();
 
-    const promises = queries.map(query => fetchData({apiKey, spaceId, host, channel, query, targetDate, reporter}));
+    const promises: Promise<IPaginatedResponse<any>>[] = queries.map(query => fetchData({apiKey, spaceId, host, channel, query, targetDate, reporter}));
 
     const contents = await Promise.all(promises);
 
-    let newNodes = []
+    let newNodes: any[] = []
 
     const existingNodes = getNodes().filter(
         n => n.internal.owner === `gatsby-source-contentchef`

@@ -1,10 +1,10 @@
-const ContentChef = require('@contentchef/contentchef-node');
+import { configure, IPaginatedResponse } from '@contentchef/contentchef-node';
 
-exports.fetchData = async ({apiKey, spaceId, host, channel, query, targetDate, reporter}) => {
+export const fetchData = async ({apiKey, spaceId, host, channel, query, targetDate, reporter}): Promise<IPaginatedResponse<object>> => {
 
     const { id, ...searchConfig } = query;
 
-    client = ContentChef.configure({
+    const client = configure({
         apiKey, spaceId, host
     }, targetDate);
 

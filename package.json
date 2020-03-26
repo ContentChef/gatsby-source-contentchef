@@ -15,11 +15,13 @@
     "email": "support@contentchef.io",
     "url": "https://contentchef.io"
   },
-  "maintainers": [{
-    "name": "ContentChef",
-    "email": "support@contentchef.io",
-    "url": "https://contentchef.io"
-  }],
+  "maintainers": [
+    {
+      "name": "ContentChef",
+      "email": "support@contentchef.io",
+      "url": "https://contentchef.io"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/ContentChef/gatsby-source-contentchef"
@@ -31,5 +33,8 @@
   "dependencies": {
     "@contentchef/contentchef-node": "^2.1.0",
     "gatsby-node-helpers": "^0.3.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.8.3"
   }
 }
