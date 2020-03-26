@@ -15,6 +15,10 @@
     "email": "support@contentchef.io",
     "url": "https://contentchef.io"
   },
+  "scripts": {
+    "build": "tsc",
+    "prepublish": "npm run build"
+  },
   "maintainers": [
     {
       "name": "ContentChef",
