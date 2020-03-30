@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-contentchef",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Gatsby source plugin for ContentChef Headless CMS",
   "keywords": [
     "gatsby",
