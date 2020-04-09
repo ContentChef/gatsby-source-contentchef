@@ -1,13 +1,13 @@
 ### Usage
 
-```javascript
+```typescript
 plugins: [{
   resolve: 'gatsby-source-contentchef',
   options: {
     apiKey: 'your api key',
-    host: 'contentchef endpoint',
     spaceId: 'your space',
     channel: 'your channel',
+    host?: 'contentchef endpoint',
     queries: [query1, query2] // needed to retrieve the content/s you want
   }
 }]

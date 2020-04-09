@@ -5,10 +5,10 @@ export const fetchData = async ({apiKey, spaceId, host, channel, query, targetDa
     const { id, ...searchConfig } = query;
 
     const client = configure({
-        apiKey, spaceId, host
+        spaceId, host
     }, targetDate);
 
-    const onlineChannel = client.onlineChannel(channel);
+    const onlineChannel = client.onlineChannel(apiKey, channel);
 
     reporter.info(`Fetching contents from ContentChef for query ${id}`);
 
