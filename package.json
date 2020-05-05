@@ -34,7 +34,7 @@
   },
   "homepage": "https://contentchef.io",
   "dependencies": {
-    "@contentchef/contentchef-node": "^2.2.1",
+    "@contentchef/contentchef-node": "^2.2.2",
     "gatsby-node-helpers": "^0.3.0"
   },
   "devDependencies": {
