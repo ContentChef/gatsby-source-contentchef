@@ -1,6 +1,6 @@
-import { configure, IPaginatedResponse } from '@contentchef/contentchef-node';
+import { configure, IResponse } from '@contentchef/contentchef-node';
 
-export const fetchData = async ({apiKey, spaceId, host, channel, query, targetDate, reporter}): Promise<IPaginatedResponse<object>> => {
+export const fetchData = async ({apiKey, spaceId, host, channel, query, targetDate, reporter}): Promise<IResponse<unknown>[]> => {
 
     const { id, ...searchConfig } = query;
 
@@ -12,15 +12,35 @@ export const fetchData = async ({apiKey, spaceId, host, channel, query, targetDa
 
     reporter.info(`Fetching contents from ContentChef for query ${id}`);
 
+    const search = async (skip = 0) => {
+        try {
+            const contents = await onlineChannel.search({
+                skip,
+                take: 100,
+                ...searchConfig
+            });
+            return contents.data.items;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    const searchAllContents = async (skip: number = 0) => {
+        try {
+            const contents = await search(skip);
+            if(contents.length > 0) {
+                return contents.concat(await searchAllContents(skip + 100));
+            }
+            return contents;
+        } catch (error) {
+            throw error;
+        }
+    }
+
     try {
-        const contents = await onlineChannel.search({
-            skip: 0,
-            take: 100,
-            ...searchConfig
-        });
+        const contents = await searchAllContents();
         reporter.info(`Successfully retrieved contents from ContentChef for query ${id}`);
-    
-        return contents.data;
+        return contents;
     } catch (error) {
         throw error;
     }

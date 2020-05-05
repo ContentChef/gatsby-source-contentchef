@@ -1,6 +1,6 @@
 import { fetchData }  from './fetch';
 import createNodeHelpers from 'gatsby-node-helpers';
-import { IPaginatedResponse } from '@contentchef/contentchef-node';
+import { IResponse } from '@contentchef/contentchef-node';
 
 const { createNodeFactory } = createNodeHelpers({
     typePrefix: 'ContentChef',
@@ -13,7 +13,7 @@ export const sourceNodes = async ({ actions, reporter, getNode, getNodes }, plug
     const activity = reporter.activityTimer('Fetch contents from ContentChef');
     activity.start();
 
-    const promises: Promise<IPaginatedResponse<any>>[] = queries.map(query => fetchData({apiKey, spaceId, host, channel, query, targetDate, reporter}));
+    const promises: Promise<IResponse<unknown>[]>[] = queries.map(query => fetchData({apiKey, spaceId, host, channel, query, targetDate, reporter}));
 
     const contents = await Promise.all(promises);
 
@@ -28,11 +28,11 @@ export const sourceNodes = async ({ actions, reporter, getNode, getNodes }, plug
     });
 
     contents.forEach(queryContents => {
-        queryContents.items.forEach(content => {
-            const node = createNodeFactory(content.definition, node => { node.id = `${content.definition}_${node.metadata.id}`; return node; })(content);
+        queryContents.forEach(content => {
+            const node = createNodeFactory(content.definition, node => { node.id = `${node.definition}_${node.metadata.id}`; return node; })(content);
             newNodes.push(node);
             createNode(node);
-        }); 
+        });
     });
 
     const diff = existingNodes.filter(
